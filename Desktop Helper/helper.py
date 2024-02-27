@@ -15,22 +15,23 @@ def update_datetime():
 # Function to fetch weather data from OpenWeatherMap API
 def fetch_weather_data(city):
     api_key = config.API_KEY
-    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=metric"
+    url = f"http://api.openweathermap.org/data/2.5/weather?q={city}&appid={api_key}&units=imperial"
     response = requests.get(url)
     data = response.json()
     return data
 
 # Function to update weather label with fetched data
 def update_weather_label():
-    city = "New York"  # Example city
+    city = "St. Louis"  # Example city
     weather_data = fetch_weather_data(city)
     print(weather_data)
     if "weather" in weather_data and "main" in weather_data:
         weather = weather_data["weather"][0]["description"]
         temperature = weather_data["main"]["temp"]
-        weather_label.config(text=f"Weather: {weather}, Temperature: {temperature}°C")
+        weather_label.config(text=f"{city}: {weather.capitalize()},\nTemperature: {temperature}°F")
     else:
         weather_label.config(text="Weather data not available")
+    root.after(300000, update_weather_label)
 
 # Create the main application window
 root = tk.Tk()
