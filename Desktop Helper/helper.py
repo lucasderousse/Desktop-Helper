@@ -24,7 +24,7 @@ def fetch_weather_data(city):
 def update_weather_label():
     city = "St. Louis"  # Example city
     weather_data = fetch_weather_data(city)
-    print(weather_data)
+    # print(weather_data) <= used to print json
     if "weather" in weather_data and "main" in weather_data:
         weather = weather_data["weather"][0]["description"]
         temperature = weather_data["main"]["temp"]
@@ -58,16 +58,12 @@ datetime_label.pack(pady=5, anchor="ne")
 update_datetime()
 
 # Create a label widget for weather
-weather_label = tk.Label(root, text="", font=("Ubuntu", 15), bg="#1d0074", fg="white")
+weather_label = tk.Label(root, text="", font=("Ubuntu", 15), bg="#0091ff", fg="white")
 weather_label.pack(pady=5, anchor="ne")
 
 # Button to update weather
 update_button = tk.Button(root, text="Update Weather", command=update_weather_label, bg=button_bg, fg=button_fg, font=button_font, relief=button_relief, borderwidth=button_borderwidth)
 update_button.pack(pady=5, anchor="ne")
-
-# Define a function to be called when the button is clicked
-def button_click():
-    label.config(text="It works!")
 
 # Start the Tkinter event loop
 root.mainloop()
