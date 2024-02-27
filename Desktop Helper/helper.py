@@ -40,6 +40,13 @@ root.title("Bot")
 root.geometry("800x600")  # Width x Height
 root.configure(bg="#0091ff")
 
+# Style configuration
+button_bg = "#4CAF50"  # Green background color
+button_fg = "white"     # White text color
+button_font = ("Helvetica", 12, "bold")  # Font settings
+button_relief = tk.RAISED  # Raised border appearance
+button_borderwidth = 3     # Border width
+
 # Create a label widget
 label = tk.Label(root, text="Hello, World!", bg="#0091ff")
 label.configure(font = defaultFont)
@@ -51,11 +58,11 @@ update_datetime()
 
 # Create a label widget for weather
 weather_label = tk.Label(root, text="", font=("Ubuntu", 15), bg="#1d0074", fg="white")
-weather_label.pack(pady=5, anchor="nw")
+weather_label.pack(pady=5, anchor="ne")
 
 # Button to update weather
-update_button = tk.Button(root, text="Update Weather", command=update_weather_label)
-update_button.pack(pady=5)
+update_button = tk.Button(root, text="Update Weather", command=update_weather_label, bg=button_bg, fg=button_fg, font=button_font, relief=button_relief, borderwidth=button_borderwidth)
+update_button.pack(pady=5, anchor="ne")
 
 # Define a function to be called when the button is clicked
 def button_click():
